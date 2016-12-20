@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import com.direct.ichat.Adapter.ChatMessagesAdapter;
 import com.direct.ichat.Model.ChatMessage;
@@ -28,15 +26,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "ChatActivity";
     private static final int RC_PHOTO_PICKER = 1;
-    private Button sendBtn;
-    private EditText messageTxt;
-    private RecyclerView messagesList;
-    private ListView lvMessageBox;
     private ChatMessagesAdapter adapter;
-    private ImageButton imageBtn;
     private FirebaseApp app;
     private FirebaseDatabase database;
     private FirebaseAuth auth;
@@ -45,77 +41,71 @@ public class MainActivity extends AppCompatActivity {
     private StorageReference storageRef;
     private String username;
 
+    @BindView(R.id.btn_send)
+    ImageButton sendBtn;
+    @BindView(R.id.edit_chat_inbox)
+    EditText messageTxt;
+    @BindView(R.id.rcv_chat_box)
+    RecyclerView rcvMessageBox;
+    @BindView(R.id.btn_upload_file)
+    ImageButton btnUploadFile;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        username = Helpers.getUserName();
+        ButterKnife.bind(this);
+
+
+        //username = Helpers.getUserName();
         setTitle("Chatting as " + username);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        sendBtn = (Button) findViewById(R.id.btn_send);
-        messageTxt = (EditText) findViewById(R.id.edit_chat_inbox);
-        messagesList = (RecyclerView) findViewById(R.id.messagesList);
-        messagesList.setHasFixedSize(false);
-        messagesList.setLayoutManager(layoutManager);
-        imageBtn = (ImageButton) findViewById(R.id.imageBtn);
 
-        // Show an image picker when the user wants to upload an imasge
-        imageBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/jpeg");
-                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
-            }
-        });
+        rcvMessageBox.setHasFixedSize(false);
+        rcvMessageBox.setLayoutManager(new LinearLayoutManager(this));
 
-        sendBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ChatMessage chat = new ChatMessage(messageTxt.getText().toString(), username);
-                // Push the chat message to the database
-                databaseRef.push().setValue(chat);
-                messageTxt.setText("");
-            }
-        });
+        btnUploadFile.setOnClickListener(this);
+        sendBtn.setOnClickListener(this);
+
         adapter = new ChatMessagesAdapter(this);
-        messagesList.setAdapter(adapter);
-        // When record added, list will scroll to bottom
-        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                messagesList.smoothScrollToPosition(adapter.getItemCount());
-            }
-        });
-
-        // Get the Firebase app and all primitives we'll use
-        app = FirebaseApp.getInstance();
-        database = FirebaseDatabase.getInstance(app);
-        auth = FirebaseAuth.getInstance(app);
-        storage = FirebaseStorage.getInstance(app);
-
-        // Get a reference to our chat "room" in the database
-        databaseRef = database.getReference("chat");
-
-        // Listen for when child nodes get added to the collection
-        databaseRef.addChildEventListener(new ChildEventListener() {
-            public void onChildAdded(DataSnapshot snapshot, String s) {
-                // Get the chat message from the snapshot and add it to the UI
-                ChatMessage chat = snapshot.getValue(ChatMessage.class);
-                adapter.addMessage(chat);
-            }
-
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+//        rcvMessageBox.setAdapter(adapter);
+//        // When record added, list will scroll to bottom
+//        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+//            public void onItemRangeInserted(int positionStart, int itemCount) {
+//                rcvMessageBox.smoothScrollToPosition(adapter.getItemCount());
+//            }
+//        });
+//
+//        // Get the Firebase app and all primitives we'll use
+//        app = FirebaseApp.getInstance();
+//        database = FirebaseDatabase.getInstance(app);
+//        auth = FirebaseAuth.getInstance(app);
+//        storage = FirebaseStorage.getInstance(app);
+//
+//        // Get a reference to our chat "room" in the database
+//        databaseRef = database.getReference("chat");
+//
+//        // Listen for when child nodes get added to the collection
+//        databaseRef.addChildEventListener(new ChildEventListener() {
+//            public void onChildAdded(DataSnapshot snapshot, String s) {
+//                // Get the chat message from the snapshot and add it to the UI
+//                ChatMessage chat = snapshot.getValue(ChatMessage.class);
+//                adapter.addMessage(chat);
+//            }
+//
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//            }
+//
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//            }
+//
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//            }
+//
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
 
     }
 
@@ -139,6 +129,27 @@ public class MainActivity extends AppCompatActivity {
                             messageTxt.setText("");
                         }
                     });
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_send:
+                ChatMessage chat = new ChatMessage(messageTxt.getText().toString(), username);
+                // Push the chat message to the database
+                databaseRef.push().setValue(chat);
+                messageTxt.setText("");
+
+                break;
+
+            case R.id.btn_upload_file:
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
+
+                break;
         }
     }
 }

@@ -9,9 +9,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.direct.ichat.Model.ChatMessage;
+import com.direct.ichat.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Phuong Nguyen Lan on 12/17/2016.
@@ -19,7 +23,7 @@ import java.util.List;
 
 public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapter.ViewHolder> {
 
-    private static final String TAG = "ChatMessageAdapter";
+    private static final String TAG = "ChatMessagesAdapter";
     private final Activity activity;
     List<ChatMessage> messages = new ArrayList<>();
 
@@ -35,7 +39,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(activity, activity.getLayoutInflater().inflate(android.R.layout.two_line_list_item, parent, false));
+        return new ViewHolder(activity, activity.getLayoutInflater().inflate(R.layout.item_message, parent, false));
     }
 
     @Override
@@ -52,33 +56,41 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final Activity activity;
 
-        TextView name, message;
-        ImageView image;
+        @BindView(R.id.tv_author_name)
+        TextView tvAuthorName;
+        @BindView(R.id.tv_message)
+        TextView tvMessage;
+        @BindView(R.id.iv_author_avatar)
+        ImageView ivAvatar;
+
+
 
         public ViewHolder(Activity activity, View itemView) {
             super(itemView);
             this.activity = activity;
-            name = (TextView) itemView.findViewById(android.R.id.text1);
-            message = (TextView) itemView.findViewById(android.R.id.text2);
-            image = new ImageView(activity);
-            ((ViewGroup) itemView).addView(image);
+            ButterKnife.bind(this, itemView);
+            /*tvAuthorName = (TextView) itemView.findViewById(android.R.id.text1);
+            tvMessage = (TextView) itemView.findViewById(android.R.id.text2);
+            ivAvatar = new ImageView(activity);*/
+            ((ViewGroup) itemView).addView(ivAvatar);
+
 
         }
 
-        //Bind data model with View
         public void bind(ChatMessage chat) {
-            name.setText(chat.authorName);
+            tvAuthorName.setText(chat.authorName);
+
             //Message is an image
             if (chat.message.startsWith("https://firebasestorage.googleapis.com/") || chat.message.startsWith("content://")) {
-                message.setVisibility(View.INVISIBLE);
-                image.setVisibility(View.VISIBLE);
+                tvMessage.setVisibility(View.INVISIBLE);
+                ivAvatar.setVisibility(View.VISIBLE);
                 Glide.with(activity)
                         .load(chat.message)
-                        .into(image);
+                        .into(ivAvatar);
             } else {
-                message.setVisibility(View.VISIBLE);
-                image.setVisibility(View.GONE);
-                message.setText(chat.message);
+                tvMessage.setVisibility(View.VISIBLE);
+                ivAvatar.setVisibility(View.GONE);
+                tvMessage.setText(chat.message);
             }
         }
     }

@@ -15,21 +15,22 @@
         android:paddingRight="@dimen/activity_medium_horizontal_margin"
         android:paddingTop="@dimen/activity_medium_vertical_margin"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentStart="true">
 
-        <ListView
+        <!--ListView
             android:id="@+id/lv_chat_box"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
-        </ListView>
+        </ListView-->
 
-        <!--android.support.v7.widget.RecyclerView
-            android:id="@+id/rclv_chat_box"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_chat_box"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@android:layout/two_line_list_item" /-->
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:listitem="@android:layout/two_line_list_item" />
 
         <LinearLayout
             android:layout_width="match_parent"
