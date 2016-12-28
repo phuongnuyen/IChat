@@ -3,6 +3,9 @@
     package="com.example.trisinh.androidchatapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <user-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +23,7 @@
         <activity android:name=".Register" />
         <activity android:name=".Users" />
         <activity android:name=".Chat" />
+        <activity android:name=".ListFriend"></activity>
     </application>
 
 </manifest>

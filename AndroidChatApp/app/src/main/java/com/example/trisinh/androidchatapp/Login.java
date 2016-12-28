@@ -39,7 +39,9 @@ public class Login extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login.this, Register.class));
+                Intent i = new Intent(Login.this, Register.class);
+                finish();
+                startActivity(i);
             }
         });
 
@@ -77,7 +79,11 @@ public class Login extends AppCompatActivity {
                                     else if(obj.getJSONObject(user).getString("password").equals(pass)){
                                         UserDetails.username = user;
                                         UserDetails.password = pass;
-                                        startActivity(new Intent(Login.this, Users.class));
+                                        //pd.dismiss();
+                                        //Intent i = new Intent(Login.this, Users.class);
+                                        Intent i = new Intent (Login.this, ListFriend.class);
+                                        finish();
+                                        startActivity(i);//new Intent(Login.this, Users.class));
                                     }
                                     else {
                                         Toast.makeText(Login.this, "incorrect password", Toast.LENGTH_LONG).show();

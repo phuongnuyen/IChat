@@ -4,11 +4,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,6 +32,10 @@ public class Users extends AppCompatActivity {
     ListView usersList;
     TextView noUsersText;
     ArrayList<String> al = new ArrayList<>();
+    ArrayAdapter<String> adapter;
+
+    EditText searchUsersBar;
+
     int totalUsers = 0;
     ProgressDialog pd;
 
@@ -37,6 +46,8 @@ public class Users extends AppCompatActivity {
 
         usersList = (ListView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
+
+        searchUsersBar = (EditText) findViewById(R.id.searchUsersBar);
 
         pd = new ProgressDialog(Users.this);
         pd.setMessage("Loading...");
@@ -59,13 +70,38 @@ public class Users extends AppCompatActivity {
         RequestQueue rQueue = Volley.newRequestQueue(Users.this);
         rQueue.add(request);
 
+
         usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                UserDetails.chatWith = al.get(position);
+                //UserDetails.chatWith = al.get(position);
+                //Lấy item mà ArrayAdapter đang giữ (lấy nguyên kiểu dữ liệu ở đó luôn, Trong trường hợp này là String)
+                UserDetails.chatWith = adapter.getItem(position);
                 startActivity(new Intent(Users.this, Chat.class));
             }
         });
+
+        searchUsersBar.addTextChangedListener(new TextWatcher (){
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+                String searchText = searchUsersBar.getText().toString().toLowerCase();
+                adapter.getFilter().filter(searchText);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1,
+                                          int arg2, int arg3) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+                                      int arg3) {
+                // TODO Auto-generated method stub
+            }
+        });
+
     }
 
     public void doOnSuccess(String s){
@@ -96,7 +132,8 @@ public class Users extends AppCompatActivity {
         else{
             noUsersText.setVisibility(View.GONE);
             usersList.setVisibility(View.VISIBLE);
-            usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al));
+            adapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, al);
+            usersList.setAdapter(adapter);
         }
 
         pd.dismiss();

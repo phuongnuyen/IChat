@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="@dimen/activity_larger_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_larger_horizontal_margin">
+            <RelativeLayout
+                android:id="@+id/rl_group_avatar"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerVertical="true">
+                <ImageView
+                    android:layout_width="@dimen/profile_avatar_size"
+                    android:layout_height="@dimen/profile_avatar_size"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/img_default_avatar"/>
+                <ImageButton
+                    android:layout_width="@dimen/btn_camera_size"
+                    android:layout_height="@dimen/btn_camera_size"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_camera"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/activity_medium_horizontal_margin"
+                android:layout_toRightOf="@+id/rl_group_avatar"
+                android:layout_centerVertical="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FirstName LastName" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\@Username" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Có 11 bạn chung"
+            android:layout_marginBottom="@dimen/activity_small_vertical_margin"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/activity_medium_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_medium_horizontal_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age: 20"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender: Female"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: abc@outlook.com"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textAllCaps="false"
+        android:layout_marginBottom="@dimen/activity_medium_vertical_margin"
+        android:text="Add friend"/>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_bar_height"
+        tools:layout="@layout/fragment_setting_bar"/>
+</RelativeLayout>

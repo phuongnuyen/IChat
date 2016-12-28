@@ -7,9 +7,8 @@
     android:orientation="horizontal">
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="216dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:textColorHint="#CFD8DC"
         android:textColor="#CFD8DC"
         android:hint="Write a message..."
@@ -24,4 +23,12 @@
         android:padding="4dp"
         android:src="@android:drawable/ic_menu_send"
         android:id="@+id/sendButton"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Image"
+        android:id = "@+id/imageButton"/>
+
 </LinearLayout>

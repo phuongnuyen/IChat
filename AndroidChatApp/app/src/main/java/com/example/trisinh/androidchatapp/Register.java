@@ -42,7 +42,9 @@ public class Register extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Register.this, Login.class));
+                Intent i = new Intent (Register.this, Login.class);
+                finish();
+                startActivity(i);
             }
         });
 

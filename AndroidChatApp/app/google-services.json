@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "810981838039",
+    "firebase_url": "https://androidchatapp-6140a.firebaseio.com",
+    "project_id": "androidchatapp-6140a",
+    "storage_bucket": "androidchatapp-6140a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810981838039:android:a09c08f5b9c34014",
+        "android_client_info": {
+          "package_name": "com.example.trisinh.testuploadimage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810981838039-9sorr5089oh3gubpcvcu1kt3gjspcd8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmSc6SA3VWziKFKPuoUbCP8rC1ua4fA1o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810981838039:android:031ed2647a3fd260",
+        "android_client_info": {
+          "package_name": "com.example.trisinh.androidchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810981838039-9sorr5089oh3gubpcvcu1kt3gjspcd8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmSc6SA3VWziKFKPuoUbCP8rC1ua4fA1o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
