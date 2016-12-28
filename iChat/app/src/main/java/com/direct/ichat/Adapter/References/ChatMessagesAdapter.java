@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -68,12 +69,23 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_author_name)
-        TextView tvAuthorName;
-        @BindView(R.id.tv_message)
-        TextView tvMessage;
-        @BindView(R.id.iv_author_avatar)
-        ImageView ivAvatar;
+        @BindView(R.id.ln_group_message_1)
+        LinearLayout lnGroupMessage1;
+        @BindView(R.id.tv_time_1)
+        TextView tvTime1;
+        @BindView(R.id.tv_message_1)
+        TextView tvMessage1;
+        @BindView(R.id.iv_avatar_1)
+        ImageView ivAvatar1;
+
+        @BindView(R.id.ln_group_message_2)
+        LinearLayout lnGroupMessage2;
+        @BindView(R.id.tv_time_2)
+        TextView tvTime2;
+        @BindView(R.id.tv_message_2)
+        TextView tvMessage2;
+        @BindView(R.id.iv_avatar_2)
+        ImageView ivAvatar2;
 
 
         public ViewHolder(View itemView) {
@@ -82,8 +94,18 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
         }
 
         public void bind(ChatMessage chat) {
-            tvAuthorName.setText(chat.authorName);
-            tvMessage.setText(chat.message);
+            if (chat.tag == 0) {
+                tvTime1.setText(chat.authorName);
+                tvMessage1.setText(chat.message);
+
+                lnGroupMessage2.setVisibility(View.GONE);
+
+            } else {
+                tvTime2.setText(chat.authorName);
+                tvMessage2.setText(chat.message);
+
+                lnGroupMessage1.setVisibility(View.GONE);
+            }
         }
     }
 }

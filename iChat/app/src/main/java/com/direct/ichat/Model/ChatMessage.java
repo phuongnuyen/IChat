@@ -5,12 +5,13 @@ package com.direct.ichat.Model;
  */
 
 public class ChatMessage {
+    public int tag;
     public String authorName;
     public String message;
 
-    public ChatMessage(){}
-    public ChatMessage(String authorName, String message){
+    public ChatMessage(String authorName, String message, int tag){
         this.authorName = authorName;
         this.message = message;
+        this.tag = tag;
     }
 }

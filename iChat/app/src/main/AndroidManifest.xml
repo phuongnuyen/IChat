@@ -28,5 +28,7 @@
 
         <activity android:name=".Activity.RegisterActivity">
         </activity>
+
+        <activity android:name=".Activity.ChatBoxActivity"/>
     </application>
 </manifest>

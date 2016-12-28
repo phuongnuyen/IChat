@@ -20,4 +20,6 @@
     <dimen name="btn_camera_size">32dp</dimen>
     <dimen name="item_acc_avatar_size">32dp</dimen>
     <dimen name="search_bar_heigth">50dp</dimen>
+
+    <dimen name="message_min_height">32dp</dimen>
 </resources>
