@@ -12,10 +12,10 @@ import com.direct.ichat.R;
  * Created by Phuong Nguyen Lan on 12/29/2016.
  */
 
-public class SettingBarFragment extends Fragment {
+public class RecentChatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_setting_bar, container, false);
+        return inflater.inflate(R.layout.fragment_recent_chats, container, false);
     }
 }

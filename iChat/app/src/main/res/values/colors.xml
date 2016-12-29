@@ -7,5 +7,5 @@
     <color name="item_acc_have_new_mess">#ECECEC</color>
     <color name="item_acc">#FFFFFF</color>
     <color name="main_bar_line">#000000</color>
-    <color name="search_bar_background">#66FFFFFF</color>
+    <color name="search_bar_background">#33FFFFFF</color>
 </resources>

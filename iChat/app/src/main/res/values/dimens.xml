@@ -22,5 +22,7 @@
     <dimen name="search_bar_heigth">34dp</dimen>
 
     <dimen name="message_min_height">32dp</dimen>
-    <dimen name="main_bar_height">34dp</dimen>
+    <dimen name="main_bar_height">26dp</dimen>
+
+    <dimen name="list_user_friends_height">80dp</dimen>
 </resources>

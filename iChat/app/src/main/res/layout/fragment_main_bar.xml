@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
 
     <ImageButton
+        android:id="@+id/btn_recent_message"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_bar_height"
         android:layout_weight="1"
+        android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_message"/>
 
@@ -19,9 +23,11 @@
         android:layout_marginBottom="3dp"/>
 
     <ImageButton
+        android:id="@+id/btn_friends"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_bar_height"
         android:layout_weight="1"
+        android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_friends"/>
 
@@ -33,9 +39,11 @@
         android:layout_marginBottom="3dp"/>
 
     <ImageButton
+        android:id="@+id/btn_feeling"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_bar_height"
         android:layout_weight="1"
+        android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_feeling"/>
 
@@ -47,9 +55,11 @@
         android:layout_marginBottom="3dp"/>
 
     <ImageButton
+        android:id="@+id/btn_setting"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_bar_height"
         android:layout_weight="1"
+        android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_more"/>
 </LinearLayout>
