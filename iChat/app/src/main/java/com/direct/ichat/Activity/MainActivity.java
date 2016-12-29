@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         InitViewPager();
-
     }
 
     private void InitViewPager(){

@@ -24,9 +24,7 @@ import butterknife.ButterKnife;
 
 public class UserFriendAdapter extends RecyclerView.Adapter<UserFriendAdapter.ViewHolder> {
 
-private static final String TAG = "CHAT_MESSAGE";
-//    private final Activity activity;
-        List<User> mFriends = new ArrayList<>();
+    List<User> mFriends = new ArrayList<>();
 
 
     public  UserFriendAdapter(List<User> listFriends){

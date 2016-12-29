@@ -10,5 +10,8 @@
     <color name="main_bar_line">#000000</color>
     <color name="search_bar_background">#33FFFFFF</color>
 
+    <color name="list_user_line">#55FFFFFF</color>
+    <color name="dismiss_other_user">#33FFFFFF</color>
+
 
 </resources>
