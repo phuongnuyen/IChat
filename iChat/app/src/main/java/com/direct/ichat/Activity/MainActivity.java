@@ -26,8 +26,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     MainViewPagerAdapter viewPagerAdapter;
-    @BindView(R.id.srv_message)
-    SearchView srvMessage;
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
     @BindView(R.id.view_pager)

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:layout_width="@dimen/list_user_friends_height"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
     <ImageView
         android:id="@+id/iv_friend_avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="@dimen/user_friends_avatar_size"
+        android:layout_height="@dimen/user_friends_avatar_size"
         android:scaleType="fitCenter"
+        android:layout_gravity="center"
         android:src="@drawable/img_default_avatar"/>
 
     <TextView
@@ -17,5 +18,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_small_vertical_margin"
         android:text="friend's name"
-        android:layout_marginBottom="@dimen/activity_small_vertical_margin"/>
+        android:layout_marginBottom="@dimen/activity_small_vertical_margin"
+        android:gravity="center"
+        android:maxWidth="@dimen/list_user_friends_max_width"/>
 </LinearLayout>

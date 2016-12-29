@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.direct.ichat.Adapter.References.ChatMessagesAdapter;
 import com.direct.ichat.Adapter.UserFriendAdapter;
 import com.direct.ichat.Model.ChatMessage;
 import com.direct.ichat.Model.User;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Phuong Nguyen Lan on 12/29/2016.
@@ -35,10 +37,12 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
+        ButterKnife.bind(this, view);
 
         friends = new ArrayList<>();
         InitDummyData();
 
+        adapter = new UserFriendAdapter(friends);
         rcvFriends.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rcvFriends.setLayoutManager(layoutManager);

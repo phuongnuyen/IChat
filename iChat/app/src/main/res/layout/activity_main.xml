@@ -11,23 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#22FFFFFF">
-        <SearchView
-            android:id="@+id/srv_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/searchview_background"
-            android:layout_marginTop="@dimen/activity_larger_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_larger_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_larger_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_medium_vertical_margin"/>
-
+        android:background="@color/colorPrimaryBackground">
         <fragment
             android:id="@+id/fr_main_bar"
             android:name="com.direct.ichat.Fagment.MainBarFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_main_bar"
+            android:layout_marginTop="@dimen/activity_medium_vertical_margin"
             android:layout_marginBottom="@dimen/activity_medium_vertical_margin"/>
 
         <View
