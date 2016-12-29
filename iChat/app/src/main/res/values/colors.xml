@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#10000000</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="item_acc_have_new_mess">#ECECEC</color>
     <color name="item_acc">#FFFFFF</color>
+    <color name="main_bar_line">#000000</color>
+    <color name="search_bar_background">#66FFFFFF</color>
 </resources>

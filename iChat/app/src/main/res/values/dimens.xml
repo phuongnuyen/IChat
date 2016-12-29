@@ -19,7 +19,8 @@
     <dimen name="profile_avatar_size">100dp</dimen>
     <dimen name="btn_camera_size">32dp</dimen>
     <dimen name="item_acc_avatar_size">32dp</dimen>
-    <dimen name="search_bar_heigth">50dp</dimen>
+    <dimen name="search_bar_heigth">34dp</dimen>
 
     <dimen name="message_min_height">32dp</dimen>
+    <dimen name="main_bar_height">34dp</dimen>
 </resources>

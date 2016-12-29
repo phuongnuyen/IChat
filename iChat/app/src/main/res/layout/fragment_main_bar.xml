@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_bar_height"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_message"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_bar_line"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_bar_height"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_friends"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_bar_line"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_bar_height"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_feeling"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_bar_line"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"/>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_bar_height"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_more"/>
 </LinearLayout>
