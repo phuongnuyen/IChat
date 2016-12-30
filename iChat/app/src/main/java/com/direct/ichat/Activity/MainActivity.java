@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.view_pager)
     ViewPager viewPager;
 
+    //-- vì có id nên bind vô luôn, không biết đúng hay sai ------------
+    @BindView(R.id.fr_main_bar)
+    Fragment frMainBar;
+    //-------------------------------------------------------------
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -10,7 +10,7 @@
         android:layout_marginLeft="@dimen/activity_medium_horizontal_margin"
         android:layout_marginRight="@dimen/activity_medium_horizontal_margin">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/item_acc_avatar_size"
             android:layout_height="@dimen/item_acc_avatar_size"
             android:src="@drawable/img_default_avatar"

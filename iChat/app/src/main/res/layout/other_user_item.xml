@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:gravity="center_vertical">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_other_user_avatar"
             android:layout_width="@dimen/user_friends_avatar_size"
             android:layout_height="@dimen/user_friends_avatar_size"

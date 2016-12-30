@@ -80,7 +80,7 @@
             android:layout_height="@dimen/message_item_height"
             android:orientation="horizontal"
             android:gravity="center_vertical">
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_avatar_2"
                 android:layout_width="@dimen/author_avatar_size"
                 android:layout_height="@dimen/author_avatar_size"

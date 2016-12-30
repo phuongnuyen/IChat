@@ -20,6 +20,23 @@ import butterknife.ButterKnife;
 public class RegisterActivity extends Activity{
     @BindView(R.id.btn_register_done)
     TextView btnRegister;
+    // them vao
+    @BindView(R.id.edt_register_first_name)
+    EditText edtFirstName;
+    @BindView(R.id.edt_register_last_name)
+    EditText edtLastName;
+    @BindView(R.id.edt_register_username)
+    EditText edtUsername;
+    @BindView(R.id.edt_register_email)
+    EditText edtEmail;
+    @BindView(R.id.edt_register_password)
+    EditText edtPassword;
+    @BindView(R.id.edt_register_confirm_password)
+    EditText edtConfirmPassword;
+    @BindView(R.id.tv_register_error_message)
+    TextView tvErrorMessage;
+
+
 
     @Override
     protected void onCreate(Bundle bundle){
