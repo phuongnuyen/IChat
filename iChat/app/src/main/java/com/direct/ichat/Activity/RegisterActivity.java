@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.direct.ichat.R;
 
@@ -17,20 +18,8 @@ import butterknife.ButterKnife;
  */
 
 public class RegisterActivity extends Activity{
-    @BindView(R.id.edt_user_first_name)
-    EditText edtFirstName;
-    @BindView(R.id.edt_user_last_name)
-    EditText edtLastName;
-    @BindView(R.id.edt_user_username)
-    EditText edtUserName;
-    @BindView(R.id.edt_user_email)
-    EditText edtEmail;
-    @BindView(R.id.edt_user_password)
-    EditText edtPassword;
-    @BindView(R.id.edt_confirm_password)
-    EditText edtConfirmPassword;
     @BindView(R.id.btn_register_done)
-    Button btnRegister;
+    TextView btnRegister;
 
     @Override
     protected void onCreate(Bundle bundle){
@@ -41,8 +30,8 @@ public class RegisterActivity extends Activity{
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                startActivity(intent);
+            Intent intent = new Intent(view.getContext(), LoginActivity.class);
+            startActivity(intent);
             }
         });
     }

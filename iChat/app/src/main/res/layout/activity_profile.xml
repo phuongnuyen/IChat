@@ -213,17 +213,9 @@
         android:id="@+id/btn_profile_add_friend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone"
-        android:textAllCaps="false"
+        android:visibility="visible"
         android:layout_marginBottom="80dp"
-        android:background="@drawable/corner_round"
-        android:paddingBottom="@dimen/activity_small_vertical_margin"
-        android:paddingTop="@dimen/activity_small_vertical_margin"
-        android:paddingLeft="@dimen/activity_medium_horizontal_margin"
-        android:paddingRight="@dimen/activity_medium_horizontal_margin"
         android:text="+ Add Friend"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        style="@style/medium_text_style"/>
+        style="@style/special_btn_style"/>
 </RelativeLayout>

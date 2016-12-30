@@ -27,20 +27,20 @@
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Login"/>
-
-        <RelativeLayout
-            android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No account yet? Create one"/>
-        </RelativeLayout>
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/activity_small_vertical_margin"
+            android:text="Login"
+            style="@style/special_btn_style"/>
+
+        <TextView
+            android:id="@+id/btn_register"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_small_vertical_margin"
+            android:text="No account yet? Create one"
+            style="@style/small_text_style"/>
     </LinearLayout>
 </RelativeLayout>

@@ -9,13 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/searchview_background"
-        android:layout_marginTop="@dimen/activity_larger_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_larger_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_larger_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_medium_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_medium_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_medium_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_medium_vertical_margin"/>
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_recent_chats"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="afushoieajf;ej"/>
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

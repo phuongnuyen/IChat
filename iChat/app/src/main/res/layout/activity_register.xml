@@ -14,78 +14,86 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="First Name"/>
+            android:text="First Name"
+            style="@style/small_text_style"/>
 
         <EditText
-            android:id="@+id/edt_user_first_name"
+            android:id="@+id/edt_register_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Name"/>
+            android:text="Last Name"
+            style="@style/small_text_style"/>
 
         <EditText
-            android:id="@+id/edt_user_last_name"
+            android:id="@+id/edt_register_last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Username"/>
+            android:text="Username"
+            style="@style/small_text_style"/>
 
         <EditText
-            android:id="@+id/edt_user_username"
+            android:id="@+id/edt_register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/small_text_style"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            style="@style/small_text_style"/>
+
+        <EditText
+            android:id="@+id/edt_register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"/>
+            android:text="Password"
+            style="@style/small_text_style"/>
 
         <EditText
-            android:id="@+id/edt_user_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"/>
-
-        <EditText
-            android:id="@+id/edt_user_password"
+            android:id="@+id/edt_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirm Password"/>
+            android:text="Confirm Password"
+            style="@style/small_text_style"/>
 
         <EditText
-            android:id="@+id/edt_confirm_password"
+            android:id="@+id/edt_register_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/tv_register_error_message"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="This username already exist!"
-            android:layout_marginBottom="@dimen/activity_medium_vertical_margin"/>
+            android:layout_marginBottom="@dimen/activity_medium_vertical_margin"
+            style="@style/small_error_text_style"/>
 
-        <Button
+        <TextView
             android:id="@+id/btn_register_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="Register"
-            android:textAllCaps="false"/>
+            style="@style/special_btn_style"
+            android:layout_marginBottom="@dimen/activity_larger_vertical_margin"/>
     </LinearLayout>
 
     <RelativeLayout

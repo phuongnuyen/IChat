@@ -43,13 +43,13 @@ public class ChatBoxActivity extends Activity implements View.OnClickListener{
     private ChatMessagesAdapter adapter;
     List<ChatMessage> listMessage;
 
-    @BindView(R.id.btn_send)
+    @BindView(R.id.btn_chat_send)
     ImageButton sendBtn;
     @BindView(R.id.edit_chat_inbox)
     EditText messageTxt;
     @BindView(R.id.rcv_chat_box)
     RecyclerView rcvMessageBox;
-    @BindView(R.id.btn_upload_file)
+    @BindView(R.id.btn_chat_upload_file)
     ImageButton btnUploadFile;
 
 
@@ -105,7 +105,7 @@ public class ChatBoxActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btn_send:
+            case R.id.btn_chat_send:
                 ChatMessage chat = new ChatMessage(messageTxt.getText().toString(), username, 0);
                 // Push the chat message to the database
                 //databaseRef.push().setValue(chat);
@@ -114,7 +114,7 @@ public class ChatBoxActivity extends Activity implements View.OnClickListener{
 
                 break;
 
-            case R.id.btn_upload_file:
+            case R.id.btn_chat_upload_file:
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/jpeg");
                 intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
