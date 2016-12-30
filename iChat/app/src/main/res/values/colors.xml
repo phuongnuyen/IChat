@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#10000000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryBackground">#22FFFFFF</color>
+    <color name="colorSecondaryBackground">#43FFFFFF</color>
+    <color name="color_common_text">#FFFFFF</color>
 
     <color name="item_acc_have_new_mess">#ECECEC</color>
     <color name="item_acc">#FFFFFF</color>
@@ -12,6 +14,6 @@
 
     <color name="list_user_line">#55FFFFFF</color>
     <color name="dismiss_other_user">#33FFFFFF</color>
-
+    <color name="red_alpha">#45FF0000</color>
 
 </resources>

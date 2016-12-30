@@ -12,4 +12,33 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="small_text_style">
+        <item name="android:textColor">@color/color_common_text</item>
+        <item name="android:layout_marginTop">@dimen/activity_super_small_vertical_margin</item>
+        <item name="android:layout_marginBottom">@dimen/activity_super_small_vertical_margin</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="small_bold_text_style">
+        <item name="android:textColor">@color/color_common_text</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="medium_text_style">
+        <item name="android:textColor">@color/color_common_text</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="larger_text_style">
+        <item name="android:textColor">@color/color_common_text</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif-semi-light</item>
+    </style>
+
 </resources>
