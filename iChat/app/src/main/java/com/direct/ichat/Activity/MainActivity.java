@@ -1,24 +1,16 @@
 package com.direct.ichat.Activity;
 
-import android.app.FragmentTransaction;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AutoCompleteTextView;
-import android.widget.SearchView;
 
 import com.direct.ichat.Adapter.MainViewPagerAdapter;
 import com.direct.ichat.Fagment.FriendsFragment;
-import com.direct.ichat.Fagment.MainBarFragment;
-import com.direct.ichat.Fagment.RecentChatsFragment;
+import com.direct.ichat.Fagment.WaitingForAcceptFragment;
 import com.direct.ichat.R;
 
 import butterknife.BindView;
@@ -30,11 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
-
-    //-- vì có id nên bind vô luôn, không biết đúng hay sai ------------
-    @BindView(R.id.fr_main_bar)
-    Fragment frMainBar;
-    //-------------------------------------------------------------
+//    @BindView(R.id.fr_main_bar)
+//    Fragment frMainBar;
 
 
 
@@ -52,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void InitViewPager(){
         viewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.AddFragment(new RecentChatsFragment());
         viewPagerAdapter.AddFragment(new FriendsFragment());
+        viewPagerAdapter.AddFragment(new WaitingForAcceptFragment());
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setOnPageChangeListener(
                 new ViewPager.SimpleOnPageChangeListener() {
@@ -82,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-
 
     @Override
     public void onClick(View view) {

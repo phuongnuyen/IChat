@@ -34,11 +34,13 @@
                 android:id="@+id/tv_other_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="other user"/>
+                android:text="other user"
+                style="@style/small_bold_text_style"/>
             <TextView
                 android:id="@+id/tv_other_user_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/subscription_text_style"
                 android:text="email"/>
         </LinearLayout>
 
@@ -46,6 +48,7 @@
             android:id="@+id/rl_other_user_group_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true">
             <RelativeLayout
@@ -94,6 +97,22 @@
                 android:scaleType="fitCenter"
                 android:alpha="0.6"
                 android:src="@drawable/ic_add"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_more"
+            android:layout_width="@dimen/other_user_btn_width"
+            android:layout_height="@dimen/other_user_item_height"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:gravity="center">
+            <ImageButton
+                android:layout_width="@dimen/setting_button_size"
+                android:layout_height="@dimen/setting_button_size"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:alpha="0.6"
+                android:src="@drawable/ic_more"/>
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

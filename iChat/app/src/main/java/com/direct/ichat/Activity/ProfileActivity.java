@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.direct.ichat.Adapter.OtherUserAdapter;
+import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
 
 import butterknife.BindView;
@@ -43,8 +43,8 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
     TextView tvAdress;
     @BindView(R.id.tv_profile_age)
     TextView tvAge;
-    @BindView(R.id.tv_profile_username)
-    TextView tvUsername;
+    @BindView(R.id.tv_profile_name)
+    TextView tvName;
     @BindView(R.id.tv_profile_email)
     TextView tvEmail;
     @BindView(R.id.tv_profile_gender)
@@ -61,6 +61,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
 
+        ExtrasData();
         if (type == FRIEND_PROFILE){
             btnAddFriend.setVisibility(View.GONE);
             lnGroupBtn.setVisibility(View.VISIBLE);
@@ -69,7 +70,27 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
             lnGroupBtn.setVisibility(View.GONE);
         }
 
+
         btnMessage.setOnClickListener(this);
+    }
+
+    private void ExtrasData(){
+        User user = (User)getIntent().getSerializableExtra(OtherUserAdapter.KEY_USER);
+        if (user != null){
+            tvName.setText(user.GetName());
+            tvEmail.setText(user.email);
+            tvAge.setText(String.valueOf(user.age));
+            tvGender.setText(user.gender);
+            tvAdress.setText(user.address);
+            tvPhoneNumber.setText(user.phoneNumber);
+        }
+
+        int adapterType = (int)getIntent().getSerializableExtra(OtherUserAdapter.KEY_TYPE);
+        if (adapterType == OtherUserAdapter.FRIEND_LIST){
+            this.type = FRIEND_PROFILE;
+        } else {
+            this.type = OTHER_PROFILE;
+        }
     }
 
     @Override
