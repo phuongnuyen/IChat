@@ -43,16 +43,16 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_login:
-                if (edtUserName.getText().equals("abc")
-                    && edtPassword.getText().equals("abc")){
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                }
+//                if (edtUserName.getText().equals("abc")
+//                    && edtPassword.getText().equals("abc")){
+                    Intent mainActivity = new Intent(this, MainActivity.class);
+                    startActivity(mainActivity);
+//                }
                 break;
 
             case R.id.btn_register:
-                Intent intent = new Intent(this, RegisterActivity.class);
-                startActivity(intent);
+                Intent register = new Intent(this, RegisterActivity.class);
+                startActivity(register);
                 break;
         }
     }
