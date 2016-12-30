@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/chat_background">
@@ -8,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_medium_vertical_margin"
         android:paddingLeft="@dimen/activity_medium_horizontal_margin"
         android:paddingRight="@dimen/activity_medium_horizontal_margin"
         android:paddingTop="@dimen/activity_medium_vertical_margin"
@@ -20,12 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical"
+            android:layout_marginBottom="@dimen/activity_medium_vertical_margin"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/write_message_box_height"
-            android:layout_marginBottom="36dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 

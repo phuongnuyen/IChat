@@ -6,27 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginBottom="@dimen/activity_medium_vertical_margin"
         android:background="@color/colorPrimaryBackground">
-        <fragment
-            android:id="@+id/fr_main_bar"
-            android:name="com.direct.ichat.Fagment.MainBarFragment"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_main_bar"
-            android:layout_marginTop="@dimen/activity_medium_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_medium_vertical_margin"/>
+            android:layout_height="@dimen/main_bar_height"
+            app:tabIndicatorHeight="1dp"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
     </LinearLayout>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/main_bar_height"
-        app:tabMode="fixed"
-        app:tabGravity="fill"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

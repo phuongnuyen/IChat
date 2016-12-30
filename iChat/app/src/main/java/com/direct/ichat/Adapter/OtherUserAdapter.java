@@ -181,13 +181,19 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
 
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(MenuItem item) {
-                            Intent intent = new Intent(context, ProfileActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable(KEY_USER, user);
-                            bundle.putSerializable(KEY_TYPE, type);
-                            intent.putExtras(bundle);
-                            context.startActivity(intent);
-                            return true;
+                            switch (item.getItemId()) {
+                                case R.id.mn_view_profile:
+                                    Intent intent = new Intent(context, ProfileActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable(KEY_USER, user);
+                                    bundle.putSerializable(KEY_TYPE, type);
+                                    intent.putExtras(bundle);
+                                    context.startActivity(intent);
+                                    return true;
+
+                                default:
+                                    return false;
+                            }
                         }
                     });
                     popup.show();

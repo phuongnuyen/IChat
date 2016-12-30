@@ -2,6 +2,7 @@ package com.direct.ichat.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,10 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
-//    @BindView(R.id.fr_main_bar)
-//    Fragment frMainBar;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +40,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.AddFragment(new FriendsFragment());
         viewPagerAdapter.AddFragment(new WaitingForAcceptFragment());
+        viewPagerAdapter.AddFragment(new Fragment());
+        viewPagerAdapter.AddFragment(new Fragment());
+
+
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setOnPageChangeListener(
-                new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position) {
+            new ViewPager.SimpleOnPageChangeListener() {
+                @Override
+                public void onPageSelected(int position) {
+                    tabLayout.getTabAt(position).select();
+                }
+            });
 
-                    }
-                });
+        // tab 1
+        View icon1 = getLayoutInflater().inflate(R.layout.main_tab_icon, null);
+        icon1.findViewById(R.id.iv_tab_icon).setBackgroundResource(R.drawable.ic_message);
+        tabLayout.addTab(tabLayout.newTab().setCustomView(icon1));
+        // tab 2
+        View icon2 = getLayoutInflater().inflate(R.layout.main_tab_icon, null);
+        icon2.findViewById(R.id.iv_tab_icon).setBackgroundResource(R.drawable.ic_friends);
+        tabLayout.addTab(tabLayout.newTab().setCustomView(icon2));
+        // tab 3
+        View icon3 = getLayoutInflater().inflate(R.layout.main_tab_icon, null);
+        icon3.findViewById(R.id.iv_tab_icon).setBackgroundResource(R.drawable.ic_feeling);
+        tabLayout.addTab(tabLayout.newTab().setCustomView(icon3));
+        // tab 4
+        View icon4 = getLayoutInflater().inflate(R.layout.main_tab_icon, null);
+        icon4.findViewById(R.id.iv_tab_icon).setBackgroundResource(R.drawable.ic_more);
+        tabLayout.addTab(tabLayout.newTab().setCustomView(icon4));
+//
+//        tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.addTab(tabLayout.newTab());
-        tabLayout.addTab(tabLayout.newTab());
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
