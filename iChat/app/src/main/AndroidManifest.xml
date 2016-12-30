@@ -26,5 +26,6 @@
         <activity android:name=".Activity.ChatBoxActivity"/>
         <activity android:name=".Activity.ProfileActivity">
         </activity>
+        <activity android:name=".Activity.SettingProfileActivity"/>
     </application>
 </manifest>

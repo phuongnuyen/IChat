@@ -219,4 +219,14 @@
         android:text="+ Add Friend"
         android:layout_alignParentBottom="true"
         style="@style/special_btn_style"/>
+
+    <TextView
+        android:id="@+id/btn_profile_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/activity_medium_vertical_margin"
+        android:text="Edit"
+        android:layout_alignParentBottom="true"
+        style="@style/special_btn_style"/>
 </RelativeLayout>

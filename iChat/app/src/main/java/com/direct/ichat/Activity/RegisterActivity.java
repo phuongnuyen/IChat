@@ -20,7 +20,6 @@ import butterknife.ButterKnife;
 public class RegisterActivity extends Activity{
     @BindView(R.id.btn_register_done)
     TextView btnRegister;
-    // them vao
     @BindView(R.id.edt_register_first_name)
     EditText edtFirstName;
     @BindView(R.id.edt_register_last_name)
@@ -48,6 +47,7 @@ public class RegisterActivity extends Activity{
             @Override
             public void onClick(View view) {
             Intent intent = new Intent(view.getContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             }
         });

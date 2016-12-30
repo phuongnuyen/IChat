@@ -25,7 +25,10 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
     public static final int FRIEND_PROFILE = 0;
     public static final int USER_OWN_PROFILE = 1;
     public static final int OTHER_PROFILE = 2;
-    private int type = FRIEND_PROFILE;
+    public static final String KEY_USER = "mUser";
+    
+    private User mUser;
+    private int type = FRIEND_PROFILE;    
 
     @BindView(R.id.btn_profile_add_friend)
     TextView btnAddFriend;
@@ -55,7 +58,8 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
     TextView tvOnionFriendNumber;
     @BindView(R.id.tv_profile_phone_number)
     TextView tvPhoneNumber;
-
+    @BindView(R.id.btn_profile_edit)
+    TextView btnEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,46 +73,54 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
         if (type == FRIEND_PROFILE){
             btnAddFriend.setVisibility(View.GONE);
             lnGroupBtn.setVisibility(View.VISIBLE);
+            btnEdit.setVisibility(View.GONE);
         }
         if (type == OTHER_PROFILE){
             btnAddFriend.setVisibility(View.VISIBLE);
             lnGroupBtn.setVisibility(View.GONE);
+            btnEdit.setVisibility(View.GONE);
         }
         if (type == USER_OWN_PROFILE){
             btnAddFriend.setVisibility(View.GONE);
             lnGroupBtn.setVisibility(View.GONE);
+            btnEdit.setVisibility(View.VISIBLE);
         }
 
         btnMessage.setOnClickListener(this);
+        btnPhone.setOnClickListener(this);
+        btnTimeline.setOnClickListener(this);
+        btnRemoveFriend.setOnClickListener(this);
+        btnAddFriend.setOnClickListener(this);
+        btnEdit.setOnClickListener(this);
     }
 
     private boolean ExtrasDataFromUserSetting(){
-        User user = (User)getIntent().getSerializableExtra(SettingFragment.KEY_USER_OWN_PROFILE);
-        if (user == null)
+        mUser = (User) getIntent().getSerializableExtra(SettingFragment.KEY_USER_OWN_PROFILE);
+        if (mUser == null)
             return false;
 
-        tvName.setText(user.GetName());
-        tvEmail.setText(user.email);
-        tvAge.setText(String.valueOf(user.age));
-        tvGender.setText(user.gender);
-        tvAdress.setText(user.address);
-        tvPhoneNumber.setText(user.phoneNumber);
+        tvName.setText(mUser.GetName());
+        tvEmail.setText(mUser.email);
+        tvAge.setText(String.valueOf(mUser.age));
+        tvGender.setText(mUser.gender);
+        tvAdress.setText(mUser.address);
+        tvPhoneNumber.setText(mUser.phoneNumber);
 
         this.type = USER_OWN_PROFILE;
         return true;
     }
 
     private boolean ExtrasDataFromAdapter(){
-        User user = (User)getIntent().getSerializableExtra(OtherUserAdapter.KEY_USER);
-        if (user == null)
+        mUser = (User)getIntent().getSerializableExtra(OtherUserAdapter.KEY_USER);
+        if (mUser == null)
             return false;
 
-        tvName.setText(user.GetName());
-        tvEmail.setText(user.email);
-        tvAge.setText(String.valueOf(user.age));
-        tvGender.setText(user.gender);
-        tvAdress.setText(user.address);
-        tvPhoneNumber.setText(user.phoneNumber);
+        tvName.setText(mUser.GetName());
+        tvEmail.setText(mUser.email);
+        tvAge.setText(String.valueOf(mUser.age));
+        tvGender.setText(mUser.gender);
+        tvAdress.setText(mUser.address);
+        tvPhoneNumber.setText(mUser.phoneNumber);
 
         int adapterType = (int)getIntent().getSerializableExtra(OtherUserAdapter.KEY_TYPE);
         if (adapterType == OtherUserAdapter.FRIEND_LIST){
@@ -122,11 +134,32 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()){
             case R.id.btn_profile_message:
-                Intent intent = new Intent(this, ChatBoxActivity.class);
+                intent = new Intent(this, ChatBoxActivity.class);
                 startActivity(intent);
+                return;
+
+            case R.id.btn_profile_phone:
                 break;
+
+            case R.id.btn_profile_timeline:
+                break;
+
+            case R.id.btn_profile_remove_friend:
+                break;
+
+            case R.id.btn_profile_add_friend:
+                break;
+
+            case R.id.btn_profile_edit:
+                intent = new Intent(this, SettingProfileActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(this.KEY_USER, mUser);
+                intent.putExtras(bundle);
+                this.startActivity(intent);
+                return;
         }
     }
 }
