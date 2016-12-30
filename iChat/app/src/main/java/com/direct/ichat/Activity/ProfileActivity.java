@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.direct.ichat.Adapter.OtherUserAdapter;
+import com.direct.ichat.Fagment.SettingFragment;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
 
@@ -22,7 +23,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends Activity implements View.OnClickListener{
     public static final int FRIEND_PROFILE = 0;
-    public static final int OTHER_PROFILE = 1;
+    public static final int USER_OWN_PROFILE = 1;
+    public static final int OTHER_PROFILE = 2;
     private int type = FRIEND_PROFILE;
 
     @BindView(R.id.btn_profile_add_friend)
@@ -61,29 +63,52 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
 
-        ExtrasData();
+        if (ExtrasDataFromAdapter() == false)
+            ExtrasDataFromUserSetting();
+
         if (type == FRIEND_PROFILE){
             btnAddFriend.setVisibility(View.GONE);
             lnGroupBtn.setVisibility(View.VISIBLE);
-        }else{
+        }
+        if (type == OTHER_PROFILE){
             btnAddFriend.setVisibility(View.VISIBLE);
             lnGroupBtn.setVisibility(View.GONE);
         }
-
+        if (type == USER_OWN_PROFILE){
+            btnAddFriend.setVisibility(View.GONE);
+            lnGroupBtn.setVisibility(View.GONE);
+        }
 
         btnMessage.setOnClickListener(this);
     }
 
-    private void ExtrasData(){
+    private boolean ExtrasDataFromUserSetting(){
+        User user = (User)getIntent().getSerializableExtra(SettingFragment.KEY_USER_OWN_PROFILE);
+        if (user == null)
+            return false;
+
+        tvName.setText(user.GetName());
+        tvEmail.setText(user.email);
+        tvAge.setText(String.valueOf(user.age));
+        tvGender.setText(user.gender);
+        tvAdress.setText(user.address);
+        tvPhoneNumber.setText(user.phoneNumber);
+
+        this.type = USER_OWN_PROFILE;
+        return true;
+    }
+
+    private boolean ExtrasDataFromAdapter(){
         User user = (User)getIntent().getSerializableExtra(OtherUserAdapter.KEY_USER);
-        if (user != null){
-            tvName.setText(user.GetName());
-            tvEmail.setText(user.email);
-            tvAge.setText(String.valueOf(user.age));
-            tvGender.setText(user.gender);
-            tvAdress.setText(user.address);
-            tvPhoneNumber.setText(user.phoneNumber);
-        }
+        if (user == null)
+            return false;
+
+        tvName.setText(user.GetName());
+        tvEmail.setText(user.email);
+        tvAge.setText(String.valueOf(user.age));
+        tvGender.setText(user.gender);
+        tvAdress.setText(user.address);
+        tvPhoneNumber.setText(user.phoneNumber);
 
         int adapterType = (int)getIntent().getSerializableExtra(OtherUserAdapter.KEY_TYPE);
         if (adapterType == OtherUserAdapter.FRIEND_LIST){
@@ -91,6 +116,8 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
         } else {
             this.type = OTHER_PROFILE;
         }
+
+        return true;
     }
 
     @Override

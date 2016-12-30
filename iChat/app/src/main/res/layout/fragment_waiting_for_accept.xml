@@ -23,7 +23,8 @@
         android:background="@color/colorSecondaryBackground"
         android:paddingTop="@dimen/activity_super_small_vertical_margin"
         android:paddingBottom="@dimen/activity_super_small_vertical_margin"
-        android:paddingLeft="@dimen/activity_medium_horizontal_margin"/>
+        android:paddingLeft="@dimen/activity_medium_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_medium_vertical_margin"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcv_waiting_user"

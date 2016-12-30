@@ -41,6 +41,13 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <style name="medium_bold_text_style">
+        <item name="android:textColor">@color/color_common_text</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-semi-light</item>
+    </style>
+
     <style name="larger_text_style">
         <item name="android:textColor">@color/color_common_text</item>
         <item name="android:textAlignment">center</item>

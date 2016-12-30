@@ -47,6 +47,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 //                if (edtUserName.getText().equals("abc")
 //                    && edtPassword.getText().equals("abc")){
                     Intent mainActivity = new Intent(this, MainActivity.class);
+                    mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(mainActivity);
 //                }
                 break;

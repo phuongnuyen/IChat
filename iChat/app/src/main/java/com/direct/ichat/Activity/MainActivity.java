@@ -11,6 +11,7 @@ import android.view.WindowManager;
 
 import com.direct.ichat.Adapter.MainViewPagerAdapter;
 import com.direct.ichat.Fagment.FriendsFragment;
+import com.direct.ichat.Fagment.SettingFragment;
 import com.direct.ichat.Fagment.WaitingForAcceptFragment;
 import com.direct.ichat.R;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPagerAdapter.AddFragment(new FriendsFragment());
         viewPagerAdapter.AddFragment(new WaitingForAcceptFragment());
         viewPagerAdapter.AddFragment(new Fragment());
-        viewPagerAdapter.AddFragment(new Fragment());
+        viewPagerAdapter.AddFragment(new SettingFragment());
 
 
         viewPager.setAdapter(viewPagerAdapter);
