@@ -19,5 +19,9 @@
     <color name="red_alpha">#45FF0000</color>
 
     <color name="chat_background">#F2F1EF</color>
+    <color name="chat_inbox_background">#99000000</color>
+
+    <color name="color_text_in_chat_box">#EEFFFFFF</color>
+    <color name="color_time_chat_text">#AAFFFFFF</color>
 
 </resources>

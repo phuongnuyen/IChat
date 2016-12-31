@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import com.direct.ichat.Adapter.References.ChatMessagesAdapter;
 import com.direct.ichat.Model.ChatMessage;
@@ -44,13 +45,13 @@ public class ChatBoxActivity extends Activity implements View.OnClickListener{
     List<ChatMessage> listMessage;
 
     @BindView(R.id.btn_chat_send)
-    ImageButton sendBtn;
+    RelativeLayout sendBtn;
     @BindView(R.id.edit_chat_inbox)
     EditText messageTxt;
     @BindView(R.id.rcv_chat_box)
     RecyclerView rcvMessageBox;
     @BindView(R.id.btn_chat_upload_file)
-    ImageButton btnUploadFile;
+    RelativeLayout btnUploadFile;
 
 
     @Override
