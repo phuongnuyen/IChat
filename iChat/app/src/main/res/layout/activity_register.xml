@@ -84,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="This username already exist!"
+            android:visibility="gone"
             android:layout_marginBottom="@dimen/activity_medium_vertical_margin"
             style="@style/small_error_text_style"/>
 

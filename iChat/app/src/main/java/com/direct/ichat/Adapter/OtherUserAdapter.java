@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.direct.ichat.Activity.ChatBoxActivity;
 import com.direct.ichat.Activity.MainActivity;
 import com.direct.ichat.Activity.ProfileActivity;
+import com.direct.ichat.Activity.UserDetails;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
 
@@ -160,6 +161,9 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
                         intent.putExtras(bundle);
                         context.startActivity(intent);
                     } else {
+                        //truyền tham số với cách này dễ hơn
+                        UserDetails.userChatWith = user;
+
                         Intent intent = new Intent(context, ChatBoxActivity.class);
                         context.startActivity(intent);
                     }
