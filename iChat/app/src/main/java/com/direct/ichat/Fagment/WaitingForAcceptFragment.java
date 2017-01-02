@@ -114,7 +114,7 @@ public class WaitingForAcceptFragment extends Fragment {
 
                 Iterator i = keyFriendRequest.keys();
                 String key = "";
-                String firstName, lastName, email, username;
+                String firstName, lastName, email, username, age, address, gender, phoneNumber;
 
                 while (i.hasNext()) {
                     key = i.next().toString();
@@ -124,8 +124,16 @@ public class WaitingForAcceptFragment extends Fragment {
                     firstName = UserDetails.obj.getJSONObject(key).getString("FirstName");
                     lastName = UserDetails.obj.getJSONObject(key).getString("LastName");
                     email = UserDetails.obj.getJSONObject(key).getString("Email");
+                    age = UserDetails.obj.getJSONObject(key).getString("Age");
+                    address = UserDetails.obj.getJSONObject(key).getString("Address");
+                    gender = UserDetails.obj.getJSONObject(key).getString("Gender");
+                    phoneNumber = UserDetails.obj.getJSONObject(key).getString("PhoneNumber");
 
-                    users.add(new User(username, firstName, lastName, email));
+                    User a = new User(username, firstName, lastName, email, age, address, gender, phoneNumber);
+                    a.SetAvatar(UserDetails.obj.getJSONObject(key).getString("AvatarPath"));
+
+
+                    users.add(a);
 
                 }
             }

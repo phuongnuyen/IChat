@@ -10,11 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.direct.ichat.Activity.ChangePasswordActivity;
 import com.direct.ichat.Activity.ProfileActivity;
 import com.direct.ichat.Activity.UserDetails;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +32,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
 
     private Context mContext;
     private User mUser;
+
+    //~~~~~~~~~~~~~~~
+    //Firebase storage
+    FirebaseStorage storage;
 
 
     @BindView(R.id.iv_setting_user_avatar)
@@ -50,6 +58,9 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         ButterKnife.bind(this, view);
         mContext = this.getContext();
 
+        //firebase storage
+        storage = FirebaseStorage.getInstance();
+
         //dummy mUser --- will change with passing data
         //mUser = new User("abc", "101", "abcUsernam", "@email.com");
         mUser = UserDetails.user;
@@ -67,6 +78,28 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
     private void SetupView(){
         tvName.setText(mUser.GetName());
         tvUsername.setText(mUser.userName);
+
+        //~~~~~~~~~~~~~~~~~~~~~test avatar
+
+        if(UserDetails.user.strAvatarPath.equals(""))
+        {
+            //to do something in here;
+        }
+        else
+        {
+            StorageReference storageRef = storage.getReferenceFromUrl(UserDetails.user.strAvatarPath);
+
+
+
+            Glide.with(mContext)
+                    .using(new FirebaseImageLoader())
+                    .load(storageRef)
+                    .into(ivAvatar);
+
+        }
+
+
+        //~~~~~~~~~~~~~~~~~~~~~~
     }
 
     @Override

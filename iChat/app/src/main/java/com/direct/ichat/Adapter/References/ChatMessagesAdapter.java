@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.direct.ichat.Activity.UserDetails;
 import com.direct.ichat.Model.ChatMessage;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
@@ -83,7 +84,6 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         @BindView(R.id.rl_group_message_text_1)
         RelativeLayout rlGroupText1;
         @BindView(R.id.ln_group_message_1)
@@ -128,6 +128,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
                     tvTime1.setText(chat.authorName);
                     tvMessage1.setText(chat.message);
                     ivMessageImg1.setVisibility(View.GONE);
+
                 }else{
                     //Image message
                     rlGroupText1.setVisibility(View.GONE);
@@ -135,6 +136,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
                     SetImage(chat.message.substring(6), ivMessageImg1);
                 }
                 lnGroupMessage2.setVisibility(View.GONE);
+                SetImage(UserDetails.userChatWith.strAvatarPath, ivAvatar1);
 
             } else {
                 if (type == TYPE_MESSAGE_TEXT) {
@@ -148,10 +150,15 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
                     SetImage(chat.message.substring(6), ivMessageImg2);
                 }
                 lnGroupMessage1.setVisibility(View.GONE);
+                SetImage(UserDetails.userChatWith.strAvatarPath, ivAvatar2);
             }
         }
 
         private void SetImage(String imagePath, ImageView ivMessageImg){
+            if (imagePath.equals("")){
+                ivMessageImg.setImageResource(R.drawable.img_not_found);
+            }
+
             StorageReference storageRef = storage.getReferenceFromUrl(imagePath);
             Glide.with(mContext)
                     .using(new FirebaseImageLoader())

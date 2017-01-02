@@ -29,12 +29,13 @@
                     android:src="@mipmap/ic_user_avatar"/>
 
                 <ImageButton
+                    android:id="@+id/ibtn_register_avatar"
                     android:layout_width="@dimen/btn_camera_size"
                     android:layout_height="@dimen/btn_camera_size"
                     android:background="@android:color/transparent"
-                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_camera"
                     android:layout_alignParentBottom="true"
-                    android:src="@drawable/ic_camera"/>
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
 
             <TextView
@@ -153,13 +154,13 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    
+
     <LinearLayout
-        android:id="@+id/btn_reject"
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_bar_height"
         android:orientation="horizontal">
         <RelativeLayout
+            android:id="@+id/btn_reject"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

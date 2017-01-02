@@ -2,7 +2,6 @@ package com.direct.ichat.Activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -55,8 +54,8 @@ public class RegisterActivity extends Activity{
     String username;
     String password;
     String confPass;
-    Context mContext;
-    private boolean flagComplete = false;
+
+//    private boolean flagComplete = false;
 
 
     @Override
@@ -67,18 +66,21 @@ public class RegisterActivity extends Activity{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        mContext = this;
+
+        Firebase.setAndroidContext(this);
+
+        tvErrorMessage.setVisibility(View.GONE);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Register();
-                if (flagComplete)
-                {
-                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //???
-                    startActivity(intent);
-                }
+//                if (flagComplete)
+//                {
+//                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //???
+//                    startActivity(intent);
+//                }
             }
         });
     }
@@ -122,7 +124,6 @@ public class RegisterActivity extends Activity{
             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                 @Override
                 public void onResponse(String s) {
-                    Firebase.setAndroidContext(mContext);
                     Firebase reference = new Firebase("https://androidchatapp-6140a.firebaseio.com/users");
 
                     if(s.equals("null")) { //nếu child user chưa có
@@ -131,9 +132,24 @@ public class RegisterActivity extends Activity{
                         reference.child(username).child("LastName").setValue(edtLastName.getText().toString());
                         reference.child(username).child("Email").setValue(edtEmail.getText().toString());
 
+                        reference.child(username).child("Age").setValue("");
+                        reference.child(username).child("Address").setValue("");
+                        reference.child(username).child("Gender").setValue("Female");
+                        reference.child(username).child("PhoneNumber").setValue("");
+
+                        reference.child(username).child("AvatarPath").setValue("");
+
+                        reference.child(username).child("ListFriend").child(username).child("Friend").setValue("Yes");
+                        reference.child(username).child("FriendRequest").child(username).child("Request").setValue("Yes");
+
+
 
                         Toast.makeText(RegisterActivity.this, "registration successful", Toast.LENGTH_LONG).show();
-                        flagComplete = true;
+//                        flagComplete = true;
+
+                        Intent i = new Intent (RegisterActivity.this, LoginActivity.class);
+                        finish();
+                        startActivity(i);
 
                     }
                     else {
@@ -148,9 +164,24 @@ public class RegisterActivity extends Activity{
                                 reference.child(username).child("LastName").setValue(edtLastName.getText().toString());
                                 reference.child(username).child("Email").setValue(edtEmail.getText().toString());
 
+                                reference.child(username).child("Age").setValue("");
+                                reference.child(username).child("Address").setValue("");
+                                reference.child(username).child("Gender").setValue("Female");
+                                reference.child(username).child("PhoneNumber").setValue("");
+
+                                reference.child(username).child("AvatarPath").setValue("");
+
+                                reference.child(username).child("ListFriend").child(username).child("Friend").setValue("Yes");
+                                reference.child(username).child("FriendRequest").child(username).child("Request").setValue("Yes");
+
 
                                 Toast.makeText(RegisterActivity.this, "registration successful", Toast.LENGTH_LONG).show();
-                                flagComplete = true;
+//                                flagComplete = true;
+
+                                Intent i = new Intent (RegisterActivity.this, LoginActivity.class);
+                                finish();
+                                startActivity(i);
+
                             } else {
                                 //Toast.makeText(RegisterActivity.this, "username already exists", Toast.LENGTH_LONG).show();
                                 edtUsername.setError("Username has already exist");

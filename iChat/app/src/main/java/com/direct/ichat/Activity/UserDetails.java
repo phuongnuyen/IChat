@@ -11,4 +11,5 @@ public class UserDetails {
     public static JSONObject obj; //tất cả dữ liệu được lấy xuống để thực hiện các thao tác khác
     public static User userChatWith; //Thông tin của người mình chat cùng
     public static User user; //Thông tin của người dùng vừa mới đăng nhập vào
+
 }

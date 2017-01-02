@@ -113,7 +113,16 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                                 String lastName = obj.getJSONObject(user).getString("LastName");
                                 String email = obj.getJSONObject(user).getString("Email");
 
-                                User userInfo = new User(user, firstName, lastName, email);
+                                String age = obj.getJSONObject(user).getString("Age");
+                                String address = obj.getJSONObject(user).getString("Address");
+                                String gender = obj.getJSONObject(user).getString("Gender");
+                                String phoneNumber = obj.getJSONObject(user).getString("PhoneNumber");
+
+                                User userInfo = new User(user, firstName, lastName, email, age, address, gender, phoneNumber);
+
+                                userInfo.SetAvatar(obj.getJSONObject(user).getString("AvatarPath"));
+
+
                                 UserDetails.user = userInfo;
 
                                 Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
