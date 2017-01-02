@@ -14,6 +14,7 @@ import com.direct.ichat.Fagment.FriendsFragment;
 import com.direct.ichat.Fagment.SettingFragment;
 import com.direct.ichat.Fagment.WaitingForAcceptFragment;
 import com.direct.ichat.R;
+import com.firebase.client.Firebase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        Firebase.setAndroidContext(this);
 
         InitViewPager();
     }

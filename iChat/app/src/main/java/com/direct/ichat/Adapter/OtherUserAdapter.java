@@ -22,6 +22,11 @@ import com.direct.ichat.Activity.ProfileActivity;
 import com.direct.ichat.Activity.UserDetails;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +90,8 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
         private int type;
         User user;
         Context context;
+
+
 
         @BindView(R.id.ln_other_user_item)
         LinearLayout lnOtherUserItem;
@@ -170,9 +177,11 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
                     break;
 
                 case R.id.btn_accept:
+                    FriendAccept();
                     break;
 
                 case R.id.btn_dismiss:
+                    RemoveFriendRequest();
                     break;
 
                 case R.id.btn_add:
@@ -204,5 +213,98 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
                     break;
             }
         }
+
+
+        //Các thủ tục để khi tương tác với từng Item trong recycle view
+        //Thủ tục xóa 1 request trong FriendRequest của user
+        private void RemoveFriendRequest()
+        {
+            //Xóa trên firebase
+            DatabaseReference refUser;
+            FirebaseDatabase database;
+
+            database = FirebaseDatabase.getInstance();
+
+            //Xóa FriendRequest trên firebase
+            refUser = database.getReferenceFromUrl("https://androidchatapp-6140a.firebaseio.com/users")
+                    .child(UserDetails.username)
+                    .child("FriendRequest")
+                    .child(user.userName);
+
+            refUser.removeValue();
+
+
+
+            //Xóa JSONObject trong UserDetails.obj để khi load lại WaitingForAcceptFragment thì RCV sẽ cập nhật lại ds các FriendRequest còn lại
+
+            try{
+
+                UserDetails.obj
+                        .getJSONObject(UserDetails.username)
+                        .getJSONObject("FriendRequest").remove(user.userName);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        //Các bước làm Accept FriendRequest:
+        //B1: Cập nhật trên CSDL (chưa làm)
+        //B1a: Xóa trong FriendRequest
+        //B1b: chèn username vừa rồi vào ListFriend của user
+        //B1c: chèn username của user vào ListFriend của username mình vừa accept
+
+
+        //B2: Xóa username mà mình mới accept trong UserDetails.obj để có cập nhật trong WaitingAcceptFragment (đã làm)
+        //B3: Chèn username vừa accept vào trong ListFriend của UserDetails.obj để cập nhật lại danh sách trong FriendsFragment (đã làm)
+        private void FriendAccept()
+        {
+
+
+
+            RemoveFriendRequest();
+
+            //Xóa trên firebase
+            DatabaseReference refUser, refFriendUser;
+            FirebaseDatabase database;
+
+            database = FirebaseDatabase.getInstance();
+
+            //add friend cho mình
+            refUser = database.getReferenceFromUrl("https://androidchatapp-6140a.firebaseio.com/users")
+                    .child(UserDetails.username)
+                    .child("ListFriend")
+                    .child(user.userName);
+            refUser.child("Friend").setValue("Yes");
+
+            //add friend cho bạn
+            refUser = database.getReferenceFromUrl("https://androidchatapp-6140a.firebaseio.com/users")
+                    .child(user.userName)
+                    .child("ListFriend")
+                    .child(UserDetails.username);
+
+            refUser.child("Friend").setValue("Yes");
+
+            try{
+                JSONObject item = new JSONObject();
+                item.put("Friend", "Yes");
+
+
+                UserDetails.obj
+                        .getJSONObject(UserDetails.username)
+                        .getJSONObject("ListFriend").put(user.userName, item);
+
+                System.out.println("Successfully");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+
     }
 }

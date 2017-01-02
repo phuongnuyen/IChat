@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
 
 import org.json.JSONException;
@@ -101,8 +102,17 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                                 UserDetails.username = user;
                                 UserDetails.password = pass;
                                 UserDetails.obj = obj;
-                                //pd.dismiss();
-                                //Intent i = new Intent(Login.this, Users.class);
+
+                                //tìm tất cả thông tin của người dùng vừa mới login vào
+                                String firstName = obj.getJSONObject(user).getString("FirstName");
+                                String lastName = obj.getJSONObject(user).getString("LastName");
+                                String email = obj.getJSONObject(user).getString("Email");
+
+                                User userInfo = new User(user, firstName, lastName, email);
+
+                                UserDetails.user = userInfo;
+
+
                                 Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
                                 mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(mainActivity);

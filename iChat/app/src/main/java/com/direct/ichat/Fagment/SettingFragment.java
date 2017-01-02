@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.direct.ichat.Activity.ChangePasswordActivity;
 import com.direct.ichat.Activity.ProfileActivity;
+import com.direct.ichat.Activity.UserDetails;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
 
@@ -49,7 +51,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         mContext = this.getContext();
 
         //dummy mUser --- will change with passing data
-        mUser = new User("abc", "101", "abcUsernam", "@email.com");
+        //mUser = new User("abc", "101", "abcUsernam", "@email.com");
+        mUser = UserDetails.user;
+
+
         SetupView();
 
 
@@ -76,6 +81,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.btn_setting_change_password:
+
                 break;
 
             case R.id.btn_setting_logout:

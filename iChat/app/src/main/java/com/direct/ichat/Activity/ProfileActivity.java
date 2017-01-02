@@ -137,6 +137,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
         Intent intent;
         switch (view.getId()){
             case R.id.btn_profile_message:
+                UserDetails.userChatWith = mUser;
                 intent = new Intent(this, ChatBoxActivity.class);
                 startActivity(intent);
                 return;

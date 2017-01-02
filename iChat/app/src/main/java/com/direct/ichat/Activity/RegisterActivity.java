@@ -2,6 +2,7 @@ package com.direct.ichat.Activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,8 +23,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +53,7 @@ public class RegisterActivity extends Activity{
     String username;
     String password;
     String confPass;
-
+    Context mContext;
     private boolean flagComplete = false;
 
 
@@ -63,13 +62,7 @@ public class RegisterActivity extends Activity{
         super.onCreate(bundle);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-
-        //Previous versions of Firebase
-        Firebase.setAndroidContext(this);
-        //Newer version of Firebase
-        if(!FirebaseApp.getApps(this).isEmpty()) {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        }
+        mContext = this;
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +117,7 @@ public class RegisterActivity extends Activity{
             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                 @Override
                 public void onResponse(String s) {
+                    Firebase.setAndroidContext(mContext);
                     Firebase reference = new Firebase("https://androidchatapp-6140a.firebaseio.com/users");
 
                     if(s.equals("null")) { //nếu child user chưa có

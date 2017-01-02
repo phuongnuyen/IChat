@@ -12,6 +12,10 @@ import com.direct.ichat.Activity.UserDetails;
 import com.direct.ichat.Adapter.OtherUserAdapter;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +36,8 @@ public class WaitingForAcceptFragment extends Fragment {
     OtherUserAdapter adapter;
 
     JSONObject keyFriendRequest;
+    //Firebase
+    Firebase refFriendRequest;
 
 
     @BindView(R.id.rcv_waiting_user)
@@ -44,7 +50,39 @@ public class WaitingForAcceptFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         users = new ArrayList<>();
+
+        refFriendRequest = new Firebase("https://androidchatapp-6140a.firebaseio.com/users/" + UserDetails.username + "/FriendRequest");
+
         InitDummyData();
+
+        refFriendRequest.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                //To do if user has FriendRequest
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
 
         adapter = new OtherUserAdapter(users, OtherUserAdapter.WAITING_LIST);
         rcvWaitingUser.setHasFixedSize(true);
@@ -55,6 +93,7 @@ public class WaitingForAcceptFragment extends Fragment {
     }
 
     private void InitDummyData(){
+
 //        users.add(new User("najfe", "Nadeshiko", "2434", "abc@gmail.com"));
 //        users.add(new User("21432", "Jim", "hohoho", "abc@gmail.com"));
 //        users.add(new User("adkja", "Tromp", "arwerw", "abc@gmail.com"));
@@ -79,7 +118,8 @@ public class WaitingForAcceptFragment extends Fragment {
 
                 while (i.hasNext()) {
                     key = i.next().toString();
-
+                    if (key.equals(UserDetails.username))
+                        continue;
                     username = key;
                     firstName = UserDetails.obj.getJSONObject(key).getString("FirstName");
                     lastName = UserDetails.obj.getJSONObject(key).getString("LastName");
@@ -94,6 +134,12 @@ public class WaitingForAcceptFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+    }
+
+    //vẫn chưa thực thi được với lý do như phần FriendFragment
+    private void AddFriendRequest (DataSnapshot dataSnapshot)
+    {
 
     }
 

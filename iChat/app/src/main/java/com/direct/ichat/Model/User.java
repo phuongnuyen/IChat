@@ -18,6 +18,8 @@ public class User implements Serializable{
 
 //    more..
 
+    public String strAvatarPath;
+
     public User(String userName, String firstName, String lastName, String email){
         this.userName = userName;
         this.firstName = firstName;
@@ -28,6 +30,23 @@ public class User implements Serializable{
         this.address = "221B Baker";
         this.gender = "Male";
         this.phoneNumber = "0999903182";
+        //tạm thời test chức năng lấy hình về để lên ImageView thôi
+        strAvatarPath = "gs://androidchatapp-6140a.appspot.com/trisinh/e20ade71309bd82899370d7421fc48.jpg";
+    }
+
+    public User(String userName, String firstName, String lastName, String email, String age, String address, String gender, String phoneNumber){
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+
+        this.age = Integer.parseInt(age);
+        this.address = address;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+
+        this.strAvatarPath = "";
+
     }
 
     public String GetName(){

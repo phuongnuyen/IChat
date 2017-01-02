@@ -22,6 +22,7 @@
                 android:layout_marginTop="@dimen/activity_larger_vertical_margin"
                 android:layout_marginBottom="@dimen/activity_small_vertical_margin">
                 <ImageView
+                    android:id="@+id/iv_register_avatar"
                     android:layout_width="@dimen/profile_avatar_size"
                     android:layout_height="@dimen/profile_avatar_size"
                     android:layout_centerInParent="true"
@@ -107,6 +108,7 @@
                     style="@style/subscription_text_style"/>
 
                 <EditText
+                    android:id="@+id/edt_register_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/subscription_text_style"/>
@@ -118,6 +120,7 @@
                     style="@style/subscription_text_style"/>
 
                 <EditText
+                    android:id="@+id/edt_register_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/subscription_text_style"/>
@@ -129,6 +132,7 @@
                     style="@style/subscription_text_style"/>
 
                 <EditText
+                    android:id="@+id/edt_register_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/subscription_text_style"/>
