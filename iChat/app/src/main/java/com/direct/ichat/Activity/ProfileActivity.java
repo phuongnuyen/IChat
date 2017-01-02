@@ -8,10 +8,14 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.direct.ichat.Adapter.OtherUserAdapter;
 import com.direct.ichat.Fagment.SettingFragment;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +32,12 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
     public static final String KEY_USER = "mUser";
     
     private User mUser;
-    private int type = FRIEND_PROFILE;    
+    private int type = FRIEND_PROFILE;
+
+    //~~~~~~~~~~~~~~~
+    //Firebase storage
+    FirebaseStorage storage;
+
 
     @BindView(R.id.btn_profile_add_friend)
     TextView btnAddFriend;
@@ -66,6 +75,8 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
+
+        storage = FirebaseStorage.getInstance();
 
         if (ExtrasDataFromAdapter() == false)
             ExtrasDataFromUserSetting();
@@ -106,6 +117,24 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
         tvAdress.setText(mUser.address);
         tvPhoneNumber.setText(mUser.phoneNumber);
 
+        if(mUser.strAvatarPath.equals(""))
+        {
+            //to do something in here;
+        }
+        else
+        {
+            StorageReference storageRef = storage.getReferenceFromUrl(mUser.strAvatarPath);
+
+
+
+            Glide.with(this)
+                    .using(new FirebaseImageLoader())
+                    .load(storageRef)
+                    .into(ivAvatar);
+
+        }
+
+
         this.type = USER_OWN_PROFILE;
         return true;
     }
@@ -121,6 +150,24 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
         tvGender.setText(mUser.gender);
         tvAdress.setText(mUser.address);
         tvPhoneNumber.setText(mUser.phoneNumber);
+
+        if(mUser.strAvatarPath.equals(""))
+        {
+            //to do something in here;
+        }
+        else
+        {
+            StorageReference storageRef = storage.getReferenceFromUrl(mUser.strAvatarPath);
+
+
+
+            Glide.with(this)
+                    .using(new FirebaseImageLoader())
+                    .load(storageRef)
+                    .into(ivAvatar);
+
+        }
+
 
         int adapterType = (int)getIntent().getSerializableExtra(OtherUserAdapter.KEY_TYPE);
         if (adapterType == OtherUserAdapter.FRIEND_LIST){

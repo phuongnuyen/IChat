@@ -29,6 +29,7 @@
                     android:src="@mipmap/ic_user_avatar"/>
 
                 <ImageButton
+                    android:id="@+id/ib_register_avatar"
                     android:layout_width="@dimen/btn_camera_size"
                     android:layout_height="@dimen/btn_camera_size"
                     android:background="@android:color/transparent"
@@ -159,7 +160,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/red_alpha">
+            android:background="@color/red_alpha"
+            android:id="@+id/iv_register_cancel">
             <ImageView
                 android:layout_width="@dimen/main_bar_icon_height"
                 android:layout_height="@dimen/main_bar_icon_height"
@@ -171,7 +173,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryBackground">
+            android:background="@color/colorPrimaryBackground"
+            android:id="@+id/iv_register_done">
             <ImageView
                 android:layout_width="@dimen/main_bar_icon_height"
                 android:layout_height="@dimen/main_bar_icon_height"

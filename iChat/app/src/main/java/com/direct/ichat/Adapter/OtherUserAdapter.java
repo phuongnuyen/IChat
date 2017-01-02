@@ -16,14 +16,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.direct.ichat.Activity.ChatBoxActivity;
 import com.direct.ichat.Activity.MainActivity;
 import com.direct.ichat.Activity.ProfileActivity;
 import com.direct.ichat.Activity.UserDetails;
 import com.direct.ichat.Model.User;
 import com.direct.ichat.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -91,6 +95,10 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
         User user;
         Context context;
 
+        //Firebase storage
+        FirebaseStorage storage;
+
+
 
 
         @BindView(R.id.ln_other_user_item)
@@ -151,7 +159,32 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
         }
 
         public void bind(User user) {
+            //firebase storage
+            storage = FirebaseStorage.getInstance();
+
             this.user = user;
+
+            //~~~~~~~~~~~~~~~~~~~~~Test hiện hình avatar
+
+            if(this.user.strAvatarPath.equals(""))
+            {
+                //to do something in here;
+            }
+            else
+            {
+                StorageReference storageRef = storage.getReferenceFromUrl(this.user.strAvatarPath);
+
+
+
+                Glide.with(context)
+                        .using(new FirebaseImageLoader())
+                        .load(storageRef)
+                        .into(ivAvatar);
+
+            }
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
             tvName.setText(user.GetName());
             tvEmail.setText(user.email);
         }
@@ -177,10 +210,12 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
                     break;
 
                 case R.id.btn_accept:
+                    //users.remove
                     FriendAccept();
                     break;
 
                 case R.id.btn_dismiss:
+
                     RemoveFriendRequest();
                     break;
 
@@ -266,7 +301,7 @@ public class OtherUserAdapter  extends RecyclerView.Adapter<OtherUserAdapter.Vie
 
             RemoveFriendRequest();
 
-            //Xóa trên firebase
+            //Chèn thêm trên firebase
             DatabaseReference refUser, refFriendUser;
             FirebaseDatabase database;
 

@@ -40,7 +40,11 @@ public class User implements Serializable{
         this.lastName = lastName;
         this.email = email;
 
-        this.age = Integer.parseInt(age);
+        if (!age.equals(""))
+            this.age = Integer.parseInt(age);
+        else
+            this.age = 0;
+
         this.address = address;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
@@ -52,4 +56,11 @@ public class User implements Serializable{
     public String GetName(){
         return firstName + " " + lastName;
     }
+
+    public void SetAvatar(String strAvatarPath)
+    {
+        this.strAvatarPath = strAvatarPath;
+    }
+
+    public String GetAvatarPath() { return this.strAvatarPath; }
 }

@@ -1,6 +1,7 @@
 package com.direct.ichat.Adapter.References;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.direct.ichat.Activity.UserDetails;
 import com.direct.ichat.Model.ChatMessage;
 import com.direct.ichat.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +74,14 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        //Test avatar
+        Context context;
+
+        //Firebase storage
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+
+
+
         @BindView(R.id.ln_group_message_1)
         LinearLayout lnGroupMessage1;
         @BindView(R.id.tv_time_1)
@@ -91,6 +104,9 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+
+            this.context = itemView.getContext();
         }
 
         public void bind(ChatMessage chat) {
@@ -98,11 +114,56 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
                 tvTime1.setText(chat.authorName);
                 tvMessage1.setText(chat.message);
 
+                //~~~~~~~~~~~~~~~~~~~~~test avatar
+
+                if(UserDetails.user.strAvatarPath.equals(""))
+                {
+                    //to do something in here;
+                }
+                else
+                {
+                    StorageReference storageRef = storage.getReferenceFromUrl(UserDetails.user.strAvatarPath);
+
+
+
+                    Glide.with(context)
+                            .using(new FirebaseImageLoader())
+                            .load(storageRef)
+                            .into(ivAvatar1);
+
+                }
+
+
+                //~~~~~~~~~~~~~~~~~~~~~~
+
                 lnGroupMessage2.setVisibility(View.GONE);
 
             } else {
                 tvTime2.setText(chat.authorName);
                 tvMessage2.setText(chat.message);
+
+                //~~~~~~~~~~~~~~~~~~~~~test avatar
+
+                if(UserDetails.userChatWith.strAvatarPath.equals(""))
+                {
+                    //to do something in here;
+                }
+                else
+                {
+                    StorageReference storageRef = storage.getReferenceFromUrl(UserDetails.userChatWith.strAvatarPath);
+
+
+
+                    Glide.with(context)
+                            .using(new FirebaseImageLoader())
+                            .load(storageRef)
+                            .into(ivAvatar2);
+
+                }
+
+
+                //~~~~~~~~~~~~~~~~~~~~~~
+
 
                 lnGroupMessage1.setVisibility(View.GONE);
             }
