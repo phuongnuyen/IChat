@@ -46,7 +46,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_setting, container, false);
+        View view = inflater.inflate(R.layout.fragment_setting, container, false);
         ButterKnife.bind(this, view);
         mContext = this.getContext();
 
@@ -71,9 +71,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()){
             case R.id.btn_setting_view_profile:
-                Intent intent = new Intent(mContext, ProfileActivity.class);
+                intent = new Intent(mContext, ProfileActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_USER_OWN_PROFILE, mUser);
                 intent.putExtras(bundle);
@@ -81,7 +82,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.btn_setting_change_password:
-
+                intent = new Intent(mContext, ChangePasswordActivity.class);
+                mContext.startActivity(intent);
                 break;
 
             case R.id.btn_setting_logout:

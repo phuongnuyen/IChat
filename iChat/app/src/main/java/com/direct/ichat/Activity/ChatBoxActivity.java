@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -54,23 +56,13 @@ import butterknife.ButterKnife;
 public class ChatBoxActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "ChatActivity";
     private static final int RC_PHOTO_PICKER = 1;
-    //    private FirebaseApp app;
-//    private FirebaseDatabase database;
-//    private FirebaseAuth auth;
-//    private FirebaseStorage storage;
-//    private DatabaseReference databaseRef;
-//    private StorageReference storageRef;
     private String username;
-
     private ChatMessagesAdapter adapter;
     List<ChatMessage> listMessage;
 
 
     //Sinh làm
     Firebase reference1, reference2;
-
-    //storage
-    //Firebase storage
     FirebaseStorage storage;
     StorageMetadata metadata;
     UploadTask uploadTask;
@@ -91,6 +83,9 @@ public class ChatBoxActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_chat_box);
         ButterKnife.bind(this);
 
@@ -107,8 +102,11 @@ public class ChatBoxActivity extends Activity implements View.OnClickListener {
 
         adapter = new ChatMessagesAdapter(listMessage);
         rcvMessageBox.setHasFixedSize(true);
-        rcvMessageBox.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        //linearLayoutManager.smoothScrollToPosition(adapter.getItemCount());
+        rcvMessageBox.setLayoutManager(linearLayoutManager);
         rcvMessageBox.setAdapter(adapter);
+        rcvMessageBox.smoothScrollToPosition(adapter.getItemCount());
 
         storage = FirebaseStorage.getInstance();
 
@@ -220,11 +218,12 @@ public class ChatBoxActivity extends Activity implements View.OnClickListener {
                 if (userName.equals(UserDetails.username)) {
                     //phải thì chọn hiện tin nhắn theo kiểu you gửi lên
                     addMessageBox(message.substring(6), 1);
+                    addMessageBox(message, 1);
                 } else {
                     //không phải thì hiện tin nhắn theo kiểu ng chat cùng gửi lên
                     System.out.println(message);
                     System.out.println(UserDetails.userChatWith.userName);
-                    addMessageBox(message.substring(6), 2);
+                    addMessageBox(message, 2);
                 }
             }
         else {

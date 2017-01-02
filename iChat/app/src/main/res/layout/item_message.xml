@@ -26,35 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <View
-                android:layout_width="@dimen/author_avatar_size"
-                android:layout_height="@dimen/author_avatar_size"
-                android:layout_marginLeft="@dimen/activity_small_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_small_horizontal_margin"/>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/activity_small_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_small_horizontal_margin"
-                android:paddingRight="@dimen/activity_medium_horizontal_margin"
-                android:gravity="center_vertical"
-                android:background="@drawable/corner_rounded_2">
-                <TextView
-                    android:id="@+id/tv_message_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_super_small_vertical_margin"
-                    android:layout_marginBottom="@dimen/activity_super_small_vertical_margin"
-                    android:layout_alignParentRight="true"
-                    android:fontFamily="sans-serif-semi-light"
-                    android:textColor="@color/color_text_in_chat_box"
-                    android:textSize="16sp"
-                    android:text="message"/>
-            </RelativeLayout>
+            android:gravity="center_vertical"
+            android:layoutDirection="rtl">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_avatar_1"
@@ -63,6 +36,48 @@
                 android:src="@mipmap/ic_user_avatar"
                 android:layout_marginLeft="@dimen/activity_small_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_small_horizontal_margin"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/activity_small_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_small_horizontal_margin">
+                <RelativeLayout
+                    android:id="@+id/rl_group_message_text_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/message_min_height"
+                    android:paddingRight="@dimen/activity_medium_horizontal_margin"
+                    android:paddingLeft="@dimen/activity_medium_horizontal_margin"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/corner_rounded_2">
+                    <TextView
+                        android:id="@+id/tv_message_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/color_text_in_chat_box"
+                        android:fontFamily="sans-serif-semi-light"
+                        android:textSize="16sp"
+                        android:text="message" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/iv_message_image_1"
+                    android:visibility="visible"
+                    android:layout_width="@dimen/message_image_size"
+                    android:layout_height="@dimen/message_image_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/author_avatar_size"
+                android:minWidth="@dimen/author_avatar_size"
+                android:layout_marginLeft="@dimen/activity_small_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_small_horizontal_margin"/>
+
         </LinearLayout>
     </LinearLayout>
 
@@ -87,7 +102,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/message_item_height"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical">
             <de.hdodenhof.circleimageview.CircleImageView
@@ -98,31 +113,44 @@
                 android:layout_marginLeft="@dimen/activity_small_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_small_horizontal_margin"/>
 
-            <RelativeLayout
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/message_min_height"
-                android:layout_weight="1"
-                android:paddingLeft="@dimen/activity_medium_horizontal_margin"
+                android:orientation="vertical"
                 android:layout_marginLeft="@dimen/activity_small_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_small_horizontal_margin"
-                android:gravity="center_vertical"
-                android:background="@drawable/corner_rounded_1">
-                <TextView
-                    android:id="@+id/tv_message_2"
+                android:layout_marginRight="@dimen/activity_small_horizontal_margin">
+
+                <RelativeLayout
+                    android:id="@+id/rl_group_message_text_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_text_in_chat_box"
-                    android:fontFamily="sans-serif-semi-light"
-                    android:textSize="16sp"
-                    android:layout_marginTop="@dimen/activity_super_small_vertical_margin"
-                    android:layout_marginBottom="@dimen/activity_super_small_vertical_margin"
-                    android:layout_alignParentLeft="true"
-                    android:text="message"/>
-            </RelativeLayout>
+                    android:minHeight="@dimen/message_min_height"
+                    android:paddingLeft="@dimen/activity_medium_horizontal_margin"
+                    android:paddingRight="@dimen/activity_medium_horizontal_margin"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/corner_rounded_1">
+                    <TextView
+                        android:id="@+id/tv_message_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_text_in_chat_box"
+                        android:fontFamily="sans-serif-semi-light"
+                        android:textSize="16sp"
+                        android:layout_alignParentLeft="true"
+                        android:text="message"/>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/iv_message_image_2"
+                    android:visibility="visible"
+                    android:layout_width="@dimen/message_image_size"
+                    android:layout_height="@dimen/message_image_size" />
+            </LinearLayout>
 
             <View
-                android:layout_width="@dimen/author_avatar_size"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:minWidth="@dimen/author_avatar_size"
                 android:layout_height="@dimen/author_avatar_size"
                 android:layout_marginLeft="@dimen/activity_small_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_small_horizontal_margin"/>

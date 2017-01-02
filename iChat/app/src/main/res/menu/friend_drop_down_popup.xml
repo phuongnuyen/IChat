@@ -5,9 +5,6 @@
         android:id="@+id/mn_view_profile"
         android:title="View profile"/>
 
-    <!--<item-->
-        <!--android:id="@+id/two"-->
-        <!--android:title="Two"/>-->
 
     <!--<item-->
         <!--android:id="@+id/three"-->

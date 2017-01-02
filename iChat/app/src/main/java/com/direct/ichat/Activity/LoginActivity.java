@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -45,6 +47,9 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle bundle){
         super.onCreate(bundle);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
@@ -109,13 +114,13 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                                 String email = obj.getJSONObject(user).getString("Email");
 
                                 User userInfo = new User(user, firstName, lastName, email);
-
                                 UserDetails.user = userInfo;
 
-
                                 Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
-                                mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                //mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(mainActivity);
+                                edtUserName.setText("");
+                                edtPassword.setText("");
 
                             }
                             else {

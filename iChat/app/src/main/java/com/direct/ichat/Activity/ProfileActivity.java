@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
     public static final int FRIEND_PROFILE = 0;
     public static final int USER_OWN_PROFILE = 1;
     public static final int OTHER_PROFILE = 2;
+    public static final int WAITING_USER_PROFILE = 3;
     public static final String KEY_USER = "mUser";
     
     private User mUser;
@@ -64,26 +67,39 @@ public class ProfileActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
 
         if (ExtrasDataFromAdapter() == false)
             ExtrasDataFromUserSetting();
 
-        if (type == FRIEND_PROFILE){
-            btnAddFriend.setVisibility(View.GONE);
-            lnGroupBtn.setVisibility(View.VISIBLE);
-            btnEdit.setVisibility(View.GONE);
-        }
-        if (type == OTHER_PROFILE){
-            btnAddFriend.setVisibility(View.VISIBLE);
-            lnGroupBtn.setVisibility(View.GONE);
-            btnEdit.setVisibility(View.GONE);
-        }
-        if (type == USER_OWN_PROFILE){
-            btnAddFriend.setVisibility(View.GONE);
-            lnGroupBtn.setVisibility(View.GONE);
-            btnEdit.setVisibility(View.VISIBLE);
+        switch (type){
+            case FRIEND_PROFILE:
+                btnAddFriend.setVisibility(View.GONE);
+                lnGroupBtn.setVisibility(View.VISIBLE);
+                btnEdit.setVisibility(View.GONE);
+                break;
+
+            case OTHER_PROFILE:
+                btnAddFriend.setVisibility(View.VISIBLE);
+                lnGroupBtn.setVisibility(View.GONE);
+                btnEdit.setVisibility(View.GONE);
+                break;
+
+            case  USER_OWN_PROFILE:
+                btnAddFriend.setVisibility(View.GONE);
+                lnGroupBtn.setVisibility(View.GONE);
+                btnEdit.setVisibility(View.VISIBLE);
+                break;
+
+            case WAITING_USER_PROFILE:
+                btnAddFriend.setVisibility(View.GONE);
+                lnGroupBtn.setVisibility(View.GONE);
+                btnEdit.setVisibility(View.GONE);
+                break;
         }
 
         btnMessage.setOnClickListener(this);
